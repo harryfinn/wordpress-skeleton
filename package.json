@@ -1,0 +1,38 @@
+{
+  "name": "WPTheme",
+  "version": "1.0.0",
+  "description": "WordPress theme powered by Brunch",
+  "author": "1minus1",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "watch": "rm -rf public && brunch watch",
+    "build": "rm -rf public && brunch build --production",
+    "server": "wp server --host=0.0.0.0 --docroot=../../../",
+    "git-update": "git submodule update --init --recursive",
+    "pre-deploy": "yarn run git-update && yarn && yarn run build",
+    "deploy": "git pull origin develop && yarn run pre-deploy",
+    "deploy:production": "git pull origin master && yarn run pre-deploy",
+    "caniuse": "doiuse -b 'last 2 versions, iOS 8' -i 'rem, viewport-units, flexbox' public/css/app.css"
+  },
+  "dependencies": {
+    "autoprefixer": "^6.5.3",
+    "babel-brunch": "^6.0.6",
+    "css-brunch": "^2.6.1",
+    "cssnano": "^3.8.1",
+    "javascript-brunch": "^2.0.0",
+    "normalize.css": "^5.0.0",
+    "owl.carousel": "^2.2.0",
+    "postcss-brunch": "github:brunch/postcss-brunch#07961d39cecfbc9aa02b48259bb551e56defd4e8",
+    "postcss-import": "^8.2.0",
+    "postcss-scss": "^0.4.0",
+    "reset-css": "^2.2.0",
+    "sass-brunch": "^2.7.0",
+    "uglify-js-brunch": "^2.0.1"
+  },
+  "devDependencies": {
+    "auto-reload-brunch": "^2.7.1",
+    "brunch": "2.9.0",
+    "doiuse": "^2.5.0"
+  }
+}

@@ -1,0 +1,17 @@
+*.sass-cache
+*.cache
+*.DS_Store
+*[Tt]humbs.db
+*.Trashes
+
+# NPM packages folder.
+node_modules/
+
+# NPM debug log.
+npm-debug.log*
+
+# Brunch folder for temporary files.
+tmp/
+
+# Brunch output folder.
+public/
