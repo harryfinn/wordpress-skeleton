@@ -132,7 +132,7 @@ correct folder within the project's theme.
 If you need to update the CMB2 library (following and update to the library
 repo), run the following command: `git submodule update`.
 
-NB: The CMB2 files are not commited directly within this repo as there should
+NB: The CMB2 files are not committed directly within this repo as there should
 be no reason to change the library code.
 
 ##Testing
