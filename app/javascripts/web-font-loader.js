@@ -1,10 +1,7 @@
 // eslint-disable-next-line
 WebFontConfig = {
-  typekit: {
-    id: ''
-  },
   google: {
-    families: []
+    families: ['Droid Sans', 'Droid Serif']
   },
   timeout: 2000,
   active: function() { clearFout(); },
