@@ -1,4 +1,7 @@
-# Kosnic WordPress site
+# Skeleton Wordpress Theme
+
+This repository contains a skeleton wordpress theme powered by brunch.
+It uses yarn to compile and process packages and assets.
 
 ## Prerequisites
 
@@ -13,36 +16,46 @@ Yarn docs here = [https://yarnpkg.com/en/docs/cli/](https://yarnpkg.com/en/docs/
 brew install mysql
 brew install node
 brew install yarn
-yarn global add brunch
 ```
 
 If you do not have a version of `php` installed or is below version `7.x.x`,
 please upgrade it. `php 7` is recommended due to the performance improvements,
 view an upgrade guide [here](https://developerjack.com/blog/2015/12/11/Installing-PHP7-with-homebrew/)
 
-##Create a new Wordpress project:
+##To create a new Wordpress project:
 
 ```TXT
-mkdir kosnic-wp && cd kosnic-wp
+mkdir your-wordpress-folder && cd your-wordpress-folder
 wp core download --locale=en_GB
 ```
 
-##Clone this repo into a new theme in your Wordpress project:
+##Clone this repo into a new theme in your Wordpress folder:
 
 ```TXT
 cd wp-content/themes && rm -rf twenty*
-git clone git@github.com:1minus1limited/kosnic.git
+mkdir your-theme && cd your-theme
+git clone git@github.com:1minus1limited/wordpress-skeleton.git .
+yarn
 ```
 
 Note: the `rm -rf twenty*` simply removes the default WordPress themes as they
-are not required.
+are not required. The `yarn` command installs all the dependancies for this skeleton.
 
-##Install the project with all dependancies:
+You can now branch from master to make changes in this repo.
+
+To create a new wordpress theme repo from this skeleton run the following command
+to delete the current git files.
 
 ```TXT
-cd kosnic
-yarn
+rm -rf .git
 ```
+
+You can now create your new wordpress theme repository, following the repository
+setup instructions on github.
+Once setup please ensure you amend the values in the `includes/constants.php`
+file to suit your theme.
+
+##Running the project
 
 To start the mysql server use `mysql.server start` and `mysql.server stop`
 to stop. The default settings for a mysql connection are:
@@ -55,9 +68,7 @@ port: 3306
 ```
 
 Use the mysql settings to make a new database for the project and complete the
-wordpress install at `http://localhost:3000`.
-
-##Running the project
+wordpress install at `http://localhost:8080`.
 
 There are serveral commands available within this repo which are run as yarn scripts
 (recommend running in separate tabs in order to monitor output):
@@ -129,3 +140,18 @@ be no reason to change the library code.
 The server will allow for devices connected on the same wifi to access the
 site. On your device go to the IP address + `xip.io:8080`.
 To find your IP address hold `ALT` and click on the wifi icon in your toolbar.
+
+##Additional Skeleton file notes
+
+There are several files within this skeleton which contain examples of functionality
+for your wordpress theme.
+
+For example:
+-   `includes/class.custom-post-types.php`
+-   `includes/class.theme-admin.php`
+-   `includes/custom-metaboxes/cmb2-post-fields.php`
+-   `app/javascripts/web-font-loader.js`
+
+When viewing these files please note additional instructions in the comments.
+
+A basic set of common styles has been included in this skeleton to be built upon.
