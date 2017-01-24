@@ -15,10 +15,13 @@ function clearFout() {
   sessionStorage.fonts = true;
 }
 
+// Uncomment the lines below and remove line 'clearFout()' once webfonts have been included.
+
 (function(d) {
-  var wf = d.createElement('script'), s = d.scripts[0];
-  wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js';
-  s.parentNode.insertBefore(wf, s);
+  // var wf = d.createElement('script'), s = d.scripts[0];
+  // wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js';
+  // s.parentNode.insertBefore(wf, s);
+  clearFout()
   if(sessionStorage.fonts) {
     d.getElementsByTagName('html')[0].classList.add('wf-active');
   }
