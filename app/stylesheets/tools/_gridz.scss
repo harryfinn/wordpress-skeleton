@@ -1,0 +1,85 @@
+$_num-grid-col: 12;
+$_breakpoints: (
+  xs: (
+    min-width: 320
+  ),
+  sm: (
+    min-width: 640
+  ),
+  md: (
+    min-width: 768
+  ),
+  lg: (
+    min-width: 1024
+  ),
+  xl: (
+    min-width: 1280
+  )
+);
+
+%grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.grid {
+  @extend %grid;
+}
+
+@media only screen and (min-width: 0px) {
+  %col-default {
+    width: 100%;
+  }
+
+  %col-push-default {
+    margin-left: 0;
+  }
+
+  @each $breakpoint, $map in $_breakpoints {
+    @for $i from 1 through $_num-grid-col {
+      .col-#{$breakpoint}-#{$i} {
+        @extend %col-default;
+      }
+
+      .col-push-#{$breakpoint}-#{$i} {
+        @extend %col-push-default;
+      }
+    }
+  }
+}
+
+@each $breakpoint, $map in $_breakpoints {
+  $min-width: map-get($map, min-width);
+
+  @media only screen and (min-width: #{$min-width}px) {
+    @for $i from 1 through $_num-grid-col {
+      .col-#{$breakpoint}-#{$i} {
+        width: percentage($i / $_num-grid-col);
+      }
+
+      .col-push-#{$breakpoint}-#{$i} {
+        margin-left: percentage($i / $_num-grid-col);
+      }
+    }
+  }
+}
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+
+  @return $map;
+}
+
+@mixin media-query($breakpoint) {
+  @if map-has-key($_breakpoints, $breakpoint) {
+    @media only screen and (min-width: #{map-deep-get($_breakpoints, $breakpoint, 'min-width')}px) {
+      @content;
+    }
+  } @else {
+    @media only screen and (min-width: $breakpoint) {
+      @content;
+    }
+  }
+}

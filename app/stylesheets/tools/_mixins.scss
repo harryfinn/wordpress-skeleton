@@ -1,0 +1,59 @@
+@mixin vertical-center($position: relative) {
+  transform: translateY(-50%);
+  position: $position;
+  top: 50%;
+}
+
+@mixin vertical-reset($position: relative) {
+  transform: translateY(0);
+  top: initial;
+  position: $position;
+}
+
+@mixin horizontal-center($position: relative) {
+  transform: translateX(-50%);
+  left: 50%;
+  position: $position;
+}
+
+@mixin horizontal-reset($position: relative) {
+  transform: translateX(0);
+  left: initial;
+  position: $position;
+}
+
+@mixin absolute-center($position: relative) {
+  transform: translate(-50%, -50%);
+  left: 50%;
+  position: $position;
+  top: 50%;
+}
+
+@mixin absolute-reset($position: relative) {
+  transform: translate(0, 0);
+  left: auto;
+  position: $position;
+  top: auto;
+}
+
+@mixin font-size($size) {
+  font-size: ($size * 10) + px;
+  font-size: $size + rem;
+}
+
+@mixin font-styles-for($font) {
+  font: {
+    family: map-get($font, family);
+    style: map-get($font, style);
+    weight: map-get($font, weight);
+  }
+}
+
+@mixin font-awesome-icon($unicode, $icon-size: false) {
+  content: unquote("\"\\#{$unicode}\"");
+  font-family: FontAwesome;
+
+  @if $icon-size {
+    @include font-size($icon-size);
+  }
+}
