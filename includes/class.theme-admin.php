@@ -3,7 +3,7 @@
  * CMB2 Theme Options
  * @version 0.1.0
  */
-class WPThemeAdmin {
+class ThemeAdmin {
 
   /**
    * Option key, and option page slug
@@ -164,5 +164,3 @@ class WPThemeAdmin {
     throw new Exception( 'Invalid property: ' . $field );
   }
 }
-
-WPThemeAdmin::get_instance();

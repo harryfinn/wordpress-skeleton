@@ -62,11 +62,9 @@ class WPTheme extends WPBrunch {
   public static function include_additional_files() {
     new CustomPostTypes();
     new CustomMetaboxes();
-    require_once THEME_FOLDER . '/includes/content-helpers.php';
+    new ContentHelpers();
 
-    if(is_admin()) {
-      require_once THEME_FOLDER . '/includes/class.theme-admin.php';
-    }
+    if(is_admin()) ThemeAdmin::get_instance();
   }
 
   public static function autoload_classes($name) {
