@@ -8,10 +8,10 @@ class CustomPostTypes {
 
   public function initialize_cpts() {
     $custom_post_types['portfolio'] = [
-      'labels' => [
-        'name' => 'Portfolio',
-        'singular_name' => 'Portfolio Item'
-      ],
+      'labels' => $this->generate_cpt_labels_for(
+        'Portfolio Item',
+        'Portfolio'
+      ),
       'public' => true,
       'menu_position' => 27,
       'menu_icon' => 'dashicons-portfolio',
@@ -67,6 +67,27 @@ class CustomPostTypes {
         $taxonomy_options['taxonomy_args']
       );
     }
+  }
+
+  private function generate_cpt_labels_for($singular, $plural) {
+    return [
+      'name' => $plural,
+      'singular_name' => $singular,
+      'add_new' => 'Add New',
+      'add_new_item' => "Add New $singular",
+      'edit_item' => "Edit $singular",
+      'new_item' => "New $singular",
+      'view_item' => "View $singular",
+      'search_items' => "Search $plural",
+      'not_found' => "No $plural found",
+      'not_found_in_trash' => "No $plural found in Trash",
+      'parent_item_colon' => "Parent $singular",
+      'all_items' => "All $plural",
+      'archives' => "$singular Archives",
+      'insert_into_item' => "Insert into $singular",
+      'uploaded_to_this_item' => "Uploaded to this $singular",
+      'not_found' => "No $plural found"
+    ];
   }
 
   private function generate_taxonomy_labels_for($singular, $plural) {
