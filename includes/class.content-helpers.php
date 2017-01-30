@@ -11,7 +11,7 @@ class ContentHelpers {
 
   public function omo_default_wp_nav_menu_args($args) {
     if(has_nav_menu($args['theme_location']) === false) {
-      $args['fallback_cb'] = omo_default_menu_fallback($args);
+      $args['fallback_cb'] = $this->omo_default_menu_fallback($args);
     }
 
     return $args;
