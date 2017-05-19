@@ -34,7 +34,7 @@ wp core download --locale=en_GB
 ```TXT
 cd wp-content/themes && rm -rf twenty*
 mkdir your-theme && cd your-theme
-git clone git@github.com:1minus1limited/wordpress-skeleton.git .
+git clone git@github.com:harryfinn/wordpress-skeleton.git .
 yarn
 ```
 
