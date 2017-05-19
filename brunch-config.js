@@ -20,12 +20,17 @@ module.exports = {
     postcss: {
       processors: [
         require('postcss-import'),
-        require('autoprefixer')(['last 2 versions', 'iOS 8'])
+        require('autoprefixer')(['last 2 versions', 'iOS 8']),
+        require('cssnano')
       ]
     },
     sass: {
       debug: 'comments',
       mode: 'native'
+    },
+    babel: {
+      presets: ['latest'],
+      pattern: /\.(es6|jsx)$/
     }
   },
   modules: {
