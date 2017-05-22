@@ -53,8 +53,10 @@ rm -rf .git
 
 You can now create your new WordPress theme repository, following the repository
 setup instructions on github.
+
 Once setup please ensure you amend the values in the `includes/constants.php`
-file to suit your theme.
+file to suit your theme, i.e. `_theme_cmb2_` would contain the name of the theme
+as the prefix, rather than `_theme_cmb2` you could use `_hf_cmb2_` etc.
 
 ## Running the project
 
@@ -74,47 +76,40 @@ WordPress install at `http://localhost:8080`.
 There are several commands available within this repo which are run as yarn
 scripts (recommend running in separate tabs in order to monitor output):
 
--   `yarn run server` - will start the PHP built-in web server allowing for
+-   `yarn server` - will start the PHP built-in web server allowing for
 access to the site via `http://localhost:8080`
 
--   `yarn run watch` - will start the Brunch watcher task, compiling `scss`,
+-   `yarn watch` - will start the Brunch watcher task, compiling `scss`,
 `js` and asset management
 
--   `yarn run build` - will compile a production (live) ready version of
+-   `yarn build` - will compile a production (live) ready version of
 stylesheets, javascripts and assets, therefore only required when deploying
 to a live environment
 
--   `yarn run git-update` - will update any submodules associated with the
+-   `yarn git-update` - will update any submodules associated with the
 project
 
--   `yarn run pre-deploy` - will run the `git-update` command and then
+-   `yarn pre-deploy` - will run the `git-update` command and then
 compile package dependencies before calling the `build` command
 
--   `yarn run deploy` - will pull down the latest changes from the develop
+-   `yarn deploy` - will pull down the latest changes from the develop
 branch (by default) then run the `pre-deploy` command
 
--   `yarn run deploy:production` - will pull down the latest changes from
+-   `yarn deploy:production` - will pull down the latest changes from
 the master branch then run the `pre-deploy` command - for Live/Production
 
--   `yarn run caniuse` - will check the compiled `app.css` file against the
+-   `yarn caniuse` - will check the compiled `app.css` file against the
 `CanIUse` API - For informational purposes only
 
-Once the PHP server is running, you can setup your WordPress site via the url
-noted above. You will need to create a mysql database using the connection
-information in the `Prerequisites` section within the `WP With Brunch` repo
-(using Sequel Pro or another mysql manager app).
+When adding node packages (via [Yarn](https://yarnpkg.com/en/) to this repo, 
+the `--dev` option should be used for any packages that are required to run 
+the development environment, prior to the build/compilation of the app. 
 
-When entering these database details into the WordPress setup screen, ensure
-that the host field is set to `127.0.0.1` rather than `localhost` otherwise you
-will receive a connection error.
-
-When adding node packages to this repo, the `--dev` option should be used for
-any packages that are required to run the development environment, prior to the
-build/compilation of the app. Otherwise, if a package affects the way in which
-the code is written, it should sit under the `dependencies` section.
-For example, the `auto-reload-brunch` offers local reloading of pages to show
-instant styling and js changes, which would not be suitable for a live server
-environment, therefore should have the `--dev` flag used to add it.
+Otherwise, if a package affects the way in which the code is written, it 
+should sit under the `dependencies` section. For example, the 
+`auto-reload-brunch` offers local reloading of pages to show instant styling 
+and js changes, which would not be suitable for a live server environment, 
+therefore should have the `--dev` flag used to add it.
 
 ## Install/Update CMB2 within project
 
@@ -137,13 +132,17 @@ If you need to update the CMB2 library (following and update to the library
 repo), run the following command: `git submodule update`.
 
 NB: The CMB2 files are not committed directly within this repo as there should
-be no reason to change the library code.
+be no reason to change the library code unless updating the CMB2 library after 
+a new release.
 
 ## Testing
 
 The server will allow for devices connected on the same wifi to access the
 site. On your device go to the IP address + `xip.io:8080`.
 To find your IP address hold `ALT` and click on the wifi icon in your toolbar.
+
+To ensure local assets are correctly parsed when testing locally, ensure the 
+`BRUNCH_LOCAL_ASSETS` constant is set to true.
 
 ## Additional Skeleton file notes
 
