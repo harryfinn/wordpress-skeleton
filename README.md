@@ -122,9 +122,9 @@ This project uses the [CMB2](https://github.com/WebDevStudios/CMB2) library
 to help generate and manage custom metaboxes within the WP admin. It is
 included within this project via submodule.
 
-To add CMB2 library to the project (this is not required when using this as a
-started framework), run the following command within the theme directory you
-wish to add the CMB2 library into:
+Should you ever need add CMB2 library to the project (this is not required when 
+using this repo as a starter framework), run the following command within the 
+relevant theme directory you wish to add the CMB2 library into:
 
 `git submodule add git@github.com:WebDevStudios/CMB2.git`
 
