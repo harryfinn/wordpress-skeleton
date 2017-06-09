@@ -22,6 +22,21 @@ If you do not have a version of `php` installed or is below version `7.x.x`,
 please upgrade it. `php 7` is recommended due to the performance improvements,
 view an upgrade guide [here](https://developerjack.com/blog/2015/12/11/Installing-PHP7-with-homebrew/)
 
+### Installing WP-CLI
+
+The WordPress installation and general development is made easier through the
+use of WP-CLI tool. Follow the commands below to install it prior to setting
+up the project.
+
+```TXT
+curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar
+chmod +x wp-cli.phar
+sudo mv wp-cli.phar /usr/local/bin/wp
+```
+
+Finally, to check the WP-CLI is running correctly, run `wp --info` which should
+present you with the current PHP & WP-CLI versions installed if successful.
+
 ## To create a new WordPress project:
 
 ```TXT
@@ -43,6 +58,32 @@ are not required. The `yarn` command installs all the dependancies for this
 skeleton.
 
 You can now branch from master to make changes in this repo.
+
+## Install/Update CMB2 within project
+
+This project uses the [CMB2](https://github.com/WebDevStudios/CMB2) library
+to help generate and manage custom metaboxes within the WP admin. It is
+included within this project via submodule.
+
+Should you ever need add CMB2 library to the project (this is not required when
+using this repo as a starter framework), run the following command within the
+relevant theme directory you wish to add the CMB2 library into:
+
+`git submodule add git@github.com:WebDevStudios/CMB2.git`
+
+When setting up the project for the first time (or installing CMB2 for the
+first time), checkout the develop branch and run the following command
+`git submodule update --init`. This will pull the CMB2 library into the
+correct folder within the project's theme.
+
+If you need to update the CMB2 library (following and update to the library
+repo), run the following command: `git submodule update`.
+
+NB: The CMB2 files are not committed directly within this repo as there should
+be no reason to change the library code unless updating the CMB2 library after
+a new release.
+
+## Starting your new themes
 
 To create a new WordPress theme repo from this skeleton run the following
 command to delete the current git files.
@@ -101,39 +142,15 @@ the master branch then run the `pre-deploy` command - for Live/Production
 -   `yarn caniuse` - will check the compiled `app.css` file against the
 `CanIUse` API - For informational purposes only
 
-When adding node packages (via [Yarn](https://yarnpkg.com/en/) to this repo, 
-the `--dev` option should be used for any packages that are required to run 
-the development environment, prior to the build/compilation of the app. 
+When adding node packages (via [Yarn](https://yarnpkg.com/en/) to this repo,
+the `--dev` option should be used for any packages that are required to run
+the development environment, prior to the build/compilation of the app.
 
-Otherwise, if a package affects the way in which the code is written, it 
-should sit under the `dependencies` section. For example, the 
-`auto-reload-brunch` offers local reloading of pages to show instant styling 
-and js changes, which would not be suitable for a live server environment, 
+Otherwise, if a package affects the way in which the code is written, it
+should sit under the `dependencies` section. For example, the
+`auto-reload-brunch` offers local reloading of pages to show instant styling
+and js changes, which would not be suitable for a live server environment,
 therefore should have the `--dev` flag used to add it.
-
-## Install/Update CMB2 within project
-
-This project uses the [CMB2](https://github.com/WebDevStudios/CMB2) library
-to help generate and manage custom metaboxes within the WP admin. It is
-included within this project via submodule.
-
-Should you ever need add CMB2 library to the project (this is not required when 
-using this repo as a starter framework), run the following command within the 
-relevant theme directory you wish to add the CMB2 library into:
-
-`git submodule add git@github.com:WebDevStudios/CMB2.git`
-
-When setting up the project for the first time (or installing CMB2 for the
-first time), checkout the develop branch and run the following command
-`git submodule update --init`. This will pull the CMB2 library into the
-correct folder within the project's theme.
-
-If you need to update the CMB2 library (following and update to the library
-repo), run the following command: `git submodule update`.
-
-NB: The CMB2 files are not committed directly within this repo as there should
-be no reason to change the library code unless updating the CMB2 library after 
-a new release.
 
 ## Testing
 
@@ -141,7 +158,7 @@ The server will allow for devices connected on the same wifi to access the
 site. On your device go to the IP address + `xip.io:8080`.
 To find your IP address hold `ALT` and click on the wifi icon in your toolbar.
 
-To ensure local assets are correctly parsed when testing locally, ensure the 
+To ensure local assets are correctly parsed when testing locally, ensure the
 `BRUNCH_LOCAL_ASSETS` constant is set to true.
 
 ## Additional Skeleton file notes
