@@ -40,7 +40,7 @@ the submodule needs to be added and initialised within this repo:
 
 ```TXT
 cd includes/
-`git submodule add git@github.com:CMB2/CMB2.git`
+`it submodule add git@github.com:CMB2/CMB2.git
 yarn git-update
 ```
 
