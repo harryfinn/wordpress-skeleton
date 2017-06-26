@@ -88,7 +88,7 @@ work around this and enable CMB2 in your new theme run the following commands:
 
 ```TXT
 cd includes/
-`git submodule add git@github.com:CMB2/CMB2.git`
+git submodule add git@github.com:CMB2/CMB2.git
 yarn git-update
 ```
 
