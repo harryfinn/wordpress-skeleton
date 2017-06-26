@@ -57,31 +57,8 @@ Note: the `rm -rf twenty*` simply removes the default WordPress themes as they
 are not required. The `yarn` command installs all the dependancies for this
 skeleton.
 
-You can now branch from master to make changes in this repo.
-
-## Install/Update CMB2 within project
-
-This project uses the [CMB2](https://github.com/WebDevStudios/CMB2) library
-to help generate and manage custom metaboxes within the WP admin. It is
-included within this project via submodule.
-
-Should you ever need add CMB2 library to the project (this is not required when
-using this repo as a starter framework), run the following command within the
-relevant theme directory you wish to add the CMB2 library into:
-
-`git submodule add git@github.com:WebDevStudios/CMB2.git`
-
-When setting up the project for the first time (or installing CMB2 for the
-first time), checkout the develop branch and run the following command
-`git submodule update --init`. This will pull the CMB2 library into the
-correct folder within the project's theme.
-
-If you need to update the CMB2 library (following and update to the library
-repo), run the following command: `git submodule update`.
-
-NB: The CMB2 files are not committed directly within this repo as there should
-be no reason to change the library code unless updating the CMB2 library after
-a new release.
+You can now branch from master to make changes in this framework repo or follow
+the instructions below to create a new theme with this framework as the base.
 
 ## Starting your new themes
 
@@ -97,7 +74,32 @@ setup instructions on github.
 
 Once setup please ensure you amend the values in the `includes/constants.php`
 file to suit your theme, i.e. `_theme_cmb2_` would contain the name of the theme
-as the prefix, rather than `_theme_cmb2` you could use `_hf_cmb2_` etc.
+as the prefix, rather than `_theme_cmb2` you could use `_my-site_cmb2_` etc.
+
+## Install/Update CMB2 within project
+
+This project uses the [CMB2](https://github.com/CMB2/CMB2) library
+to help generate and manage custom metaboxes within the WP admin. It is
+included within the framework repo as a submodule.
+
+However, when running the `rm -rf .git` command, this submodule link will be
+removed and the ability to update CMB2 via submodule commands will be lost. To
+work around this and enable CMB2 in your new theme run the following commands:
+
+```TXT
+cd includes/
+`git submodule add git@github.com:CMB2/CMB2.git`
+yarn git-update
+```
+
+The commands about will swap you into the includes folder within the theme and
+then create a submodule link for this new theme project before activating the
+submodule and pulling down the files.
+
+It is important to remember that these files are not committed to the repo, only
+the submodule link to the CMB2 project, which helps to reduce overall file size
+and 'weight' in your repo. It also means that you can update your new theme repo
+with updates from CMB2 without having to update via this skeleton repo.
 
 ## Running the project
 
@@ -167,11 +169,19 @@ There are several files within this skeleton which contain examples of
 functionality for your WordPress theme.
 
 For example:
--   `includes/class.custom-post-types.php`
--   `includes/class.theme-admin.php`
--   `includes/custom-metaboxes/cmb2-post-fields.php`
--   `app/javascripts/web-font-loader.js`
+-   `includes/class.custom-post-types.php` - Handles registering and
+configuration of Custom Post Types (CPT's).
+-   `includes/class.theme-admin.php` - Sets up a basic 'Theme Options' screen
+within the admin dashboard.
+-   `includes/custom-metaboxes/cmb2-post-fields.php` - An example CMB2 fields
+file.
+-   `app/javascripts/web-font-loader.js` - The Google webfont loader script,
+also compatible with various other web font providers (i.e. typekit) along with
+custom font support and FOUT remover.
+-   `THEME_README.md` - An example README to replace this README file when using
+this skeleton as the starter framework for a new theme.
 
 When viewing these files please note additional instructions in the comments.
 
-A basic set of common styles has been included in this skeleton to be built upon.
+A basic set of common styles has been included in this skeleton to be built
+upon.
