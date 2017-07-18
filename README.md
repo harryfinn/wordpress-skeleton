@@ -40,8 +40,12 @@ present you with the current PHP & WP-CLI versions installed if successful.
 ## To create a new WordPress project:
 
 ```TXT
-take your-wordpress-folder
+mkdir your-wordpress-folder && cd your-wordpress-folder
 wp core download --locale=en_GB
+```
+or if you have 'Oh my Zsh' installed you can simply use a shortcut:
+```TXT
+take your-wordpress-folder && wp core download --locale=en_GB
 ```
 
 ## Clone this repo into a new theme in your WordPress folder:
