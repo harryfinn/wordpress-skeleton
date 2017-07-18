@@ -40,7 +40,7 @@ present you with the current PHP & WP-CLI versions installed if successful.
 ## To create a new WordPress project:
 
 ```TXT
-mkdir your-wordpress-folder && cd your-wordpress-folder
+take your-wordpress-folder
 wp core download --locale=en_GB
 ```
 
