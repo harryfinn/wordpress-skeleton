@@ -43,7 +43,9 @@ present you with the current PHP & WP-CLI versions installed if successful.
 mkdir your-wordpress-folder && cd your-wordpress-folder
 wp core download --locale=en_GB
 ```
-or if you have 'Oh my Zsh' installed you can simply use a shortcut:
+
+Or if you have 'Oh My Zsh' installed, you can simplify this with the take command which will create and swap into the directory:
+
 ```TXT
 take your-wordpress-folder && wp core download --locale=en_GB
 ```
