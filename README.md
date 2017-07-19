@@ -44,6 +44,12 @@ mkdir your-wordpress-folder && cd your-wordpress-folder
 wp core download --locale=en_GB
 ```
 
+Or if you have 'Oh My Zsh' installed, you can simplify this with the take command which will create and swap into the directory:
+
+```TXT
+take your-wordpress-folder && wp core download --locale=en_GB
+```
+
 ## Clone this repo into a new theme in your WordPress folder:
 
 ```TXT
