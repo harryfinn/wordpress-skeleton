@@ -4,7 +4,6 @@ class ContentHelpers {
   public function __construct() {
     add_filter('wp_nav_menu_args', [$this, 'omo_default_wp_nav_menu_args']);
     add_filter('the_content', [$this, 'omo_cleanup_shortcode_fix']);
-    add_filter('the_content', [$this, 'omo_img_unautop', LOAD_AFTER_THEME]);
     add_filter('post_thumbnail_html', [$this, 'omo_remove_thumbnail_dimensions']);
     add_filter('image_send_to_editor', [$this, 'omo_remove_thumbnail_dimensions']);
   }

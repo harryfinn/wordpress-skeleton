@@ -7,7 +7,7 @@ It uses yarn to compile and process packages and assets.
 
 Before you clone this repository, please ensure the following have been
 installed (first-time setup only). Please also ensure that you have `php`
-installed (`php -v`), version `7.0.8` or higher. We are also using Yarn
+installed (`php -v`), version `7.1.x` or higher. We are also using Yarn
 to manage our project dependencies, however, you can still use `npm`
 commands if you are unsure of the matching `yarn` command. Checkout the
 Yarn docs here = [https://yarnpkg.com/en/docs/cli/](https://yarnpkg.com/en/docs/cli/)
@@ -18,7 +18,7 @@ brew install node
 brew install yarn
 ```
 
-If you do not have a version of `php` installed or is below version `7.x.x`,
+If you do not have a version of `php` installed or is below version `7.1.x`,
 please upgrade it. `php 7` is recommended due to the performance improvements,
 view an upgrade guide [here](https://developerjack.com/blog/2015/12/11/Installing-PHP7-with-homebrew/)
 
@@ -44,12 +44,6 @@ mkdir your-wordpress-folder && cd your-wordpress-folder
 wp core download --locale=en_GB
 ```
 
-Or if you have 'Oh My Zsh' installed, you can simplify this with the take command which will create and swap into the directory:
-
-```TXT
-take your-wordpress-folder && wp core download --locale=en_GB
-```
-
 ## Clone this repo into a new theme in your WordPress folder:
 
 ```TXT
@@ -69,11 +63,7 @@ the instructions below to create a new theme with this framework as the base.
 ## Starting your new themes
 
 To create a new WordPress theme repo from this skeleton run the following
-command to delete the current git files.
-
-```TXT
-rm -rf .git
-```
+command to delete the current git files. `rm -rf .git`
 
 You can now create your new WordPress theme repository, following the repository
 setup instructions on github.
