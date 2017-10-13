@@ -1,19 +1,24 @@
 $_num-grid-col: 12;
 $_breakpoints: (
   xs: (
-    min-width: 320
+    min-width: 320,
+    gutter-spacing: 10
   ),
   sm: (
-    min-width: 640
+    min-width: 640,
+    gutter-spacing: 10
   ),
   md: (
-    min-width: 768
+    min-width: 768,
+    gutter-spacing: 20
   ),
   lg: (
-    min-width: 1024
+    min-width: 1024,
+    gutter-spacing: 20
   ),
   xl: (
-    min-width: 1280
+    min-width: 1280,
+    gutter-spacing: 20
   )
 );
 
@@ -50,15 +55,29 @@ $_breakpoints: (
 
 @each $breakpoint, $map in $_breakpoints {
   $min-width: map-get($map, min-width);
+  $gutter-spacing: map-get($map, gutter-spacing);
 
   @media only screen and (min-width: #{$min-width}px) {
+    .grid--gutter {
+      margin-left: -#{$gutter-spacing}px;
+      margin-top: -#{$gutter-spacing}px;
+    }
+
     @for $i from 1 through $_num-grid-col {
+      $percentage-width: percentage($i / $_num-grid-col);
+
       .col-#{$breakpoint}-#{$i} {
-        width: percentage($i / $_num-grid-col);
+        width: $percentage-width;
       }
 
       .col-push-#{$breakpoint}-#{$i} {
-        margin-left: percentage($i / $_num-grid-col);
+        margin-left: $percentage-width;
+      }
+
+      .grid--gutter .col-#{$breakpoint}-#{$i} {
+        margin-left: #{$gutter-spacing}px;
+        margin-top: #{$gutter-spacing}px;
+        width: calc(#{$percentage-width} - #{$gutter-spacing}px);
       }
     }
   }

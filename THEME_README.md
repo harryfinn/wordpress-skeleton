@@ -39,8 +39,8 @@ submodule link will have been removed during setup (`rm -rf .git`), therefore
 the submodule needs to be added and initialised within this repo:
 
 ```TXT
-cd includes/
-`it submodule add git@github.com:CMB2/CMB2.git
+cd includes
+git submodule add git@github.com:CMB2/CMB2.git
 yarn git-update
 ```
 
@@ -51,7 +51,10 @@ The CMB2 files are not committed directly within this repo as there should
 be no reason to change the library code once development has started. An
 exception to this would be if a security patch or bugfix was required.
 
-It is generally preferred that major updates to `CMB2` are not applied during development, unless new functionality is required, but rather left for the next project or new feature implementation as defined within the `WordPress Skeleton` framework.
+It is generally preferred that major updates to `CMB2` are not applied during
+development, unless new functionality is required, but rather left for the next
+project or new feature implementation as defined within the
+`WordPress Skeleton` framework.
 
 ## Running & Building the project
 

@@ -125,8 +125,8 @@ class ThemeAdmin {
     // Set our CMB2 fields
 
     $cmb->add_field([
-      'name' => __( 'Copyright Text', 'WPTHEME' ),
-      'desc' => __( 'Enter your sites copyright text here', 'WPTHEME' ),
+      'name' => __( 'Copyright Text', LOCALE ),
+      'desc' => __( 'Enter your sites copyright text here', LOCALE ),
       'id'   => 'copyright',
       'type' => 'text'
     ]);

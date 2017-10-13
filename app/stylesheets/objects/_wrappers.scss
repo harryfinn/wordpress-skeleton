@@ -1,5 +1,16 @@
-.container {
-  margin: 0 auto;
-  max-width: $container-width;
-  position: relative;
+@include media-query(0) {
+  .container {
+    margin: 0 auto;
+    max-width: $container-width;
+    padding: 0 $container-padding;
+    position: relative;
+    width: 100%;
+  }
+}
+
+@include media-query(md) {
+  .container {
+    max-width: $container-width;
+    padding: 0 calc(#{$container-padding} * 2);
+  }
 }

@@ -38,6 +38,7 @@
 
 @mixin font-size($size) {
   font-size: ($size * 10) + px;
+  // scss-lint:disable DuplicateProperty
   font-size: $size + rem;
 }
 
@@ -56,4 +57,9 @@
   @if $icon-size {
     @include font-size($icon-size);
   }
+}
+
+@mixin zoom($zoom-level) {
+  transform: scale($zoom-level);
+  transform-origin: 0 0;
 }
