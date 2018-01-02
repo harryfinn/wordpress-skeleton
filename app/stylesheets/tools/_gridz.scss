@@ -2,11 +2,11 @@ $_num-grid-col: 12;
 $_breakpoints: (
   xs: (
     min-width: 320,
-    gutter-spacing: 10
+    gutter-spacing: 20
   ),
   sm: (
     min-width: 640,
-    gutter-spacing: 10
+    gutter-spacing: 20
   ),
   md: (
     min-width: 768,
@@ -14,11 +14,11 @@ $_breakpoints: (
   ),
   lg: (
     min-width: 1024,
-    gutter-spacing: 20
+    gutter-spacing: 30
   ),
   xl: (
     min-width: 1280,
-    gutter-spacing: 20
+    gutter-spacing: 30
   )
 );
 
@@ -40,6 +40,10 @@ $_breakpoints: (
     margin-left: 0;
   }
 
+  %grid-gutter-default {
+    margin-left: -20px;
+  }
+
   @each $breakpoint, $map in $_breakpoints {
     @for $i from 1 through $_num-grid-col {
       .col-#{$breakpoint}-#{$i} {
@@ -48,6 +52,18 @@ $_breakpoints: (
 
       .col-push-#{$breakpoint}-#{$i} {
         @extend %col-push-default;
+      }
+
+      .grid--gutter {
+        @extend %grid-gutter-default;
+      }
+
+      $percentage-width: 100%;
+      $gutter-spacing: 20;
+
+      .grid--gutter > .col-#{$breakpoint}-#{$i} {
+        margin-left: #{$gutter-spacing}px;
+        width: calc(#{$percentage-width} - #{$gutter-spacing}px);
       }
     }
   }
@@ -60,7 +76,6 @@ $_breakpoints: (
   @media only screen and (min-width: #{$min-width}px) {
     .grid--gutter {
       margin-left: -#{$gutter-spacing}px;
-      margin-top: -#{$gutter-spacing}px;
     }
 
     @for $i from 1 through $_num-grid-col {
@@ -74,9 +89,8 @@ $_breakpoints: (
         margin-left: $percentage-width;
       }
 
-      .grid--gutter .col-#{$breakpoint}-#{$i} {
+      .grid--gutter > .col-#{$breakpoint}-#{$i} {
         margin-left: #{$gutter-spacing}px;
-        margin-top: #{$gutter-spacing}px;
         width: calc(#{$percentage-width} - #{$gutter-spacing}px);
       }
     }

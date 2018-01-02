@@ -14,3 +14,13 @@
     padding: 0 calc(#{$container-padding} * 2);
   }
 }
+
+@media only screen
+and (device-width: 375px)
+and (device-height: 812px)
+and (-webkit-device-pixel-ratio: 3)
+and (orientation: landscape) {
+  .container {
+    padding: 0 constant(safe-area-inset-right) 0 constant(safe-area-inset-left);
+  }
+}
