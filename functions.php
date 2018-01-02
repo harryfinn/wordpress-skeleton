@@ -1,14 +1,15 @@
 <?php
 
 require_once(get_template_directory() . '/includes/constants.php');
-require_once(THEME_FOLDER . '/includes/class.wp-brunch.php');
+require_once(INCLUDES_DIR . '/class.wp-brunch.php');
+require_once(INCLUDES_DIR . '/class.autoloaders.php');
+require_once(INCLUDES_DIR . '/wordpress-helpers.php');
 
 class WPTheme extends WPBrunch {
   public static function init() {
     parent::init();
 
-    spl_autoload_register([__CLASS__, 'autoloadClasses']);
-    spl_autoload_register([__CLASS__, 'autoloadLibClasses']);
+    Autoloaders::init();
 
     add_action('wp_enqueue_scripts', [__CLASS__, 'styleScriptIncludes']);
     add_action('after_setup_theme', [__CLASS__, 'themeSupport']);
@@ -16,25 +17,37 @@ class WPTheme extends WPBrunch {
     add_action('after_setup_theme', [__CLASS__, 'registerNavMenus']);
     add_action('init', [__CLASS__, 'includeAdditionalFiles'], LOAD_ON_INIT);
 
+    add_filter('script_loader_tag', [__CLASS__, 'deferParsingOfJS'], 10);
+
     // Uncomment action below once you have customised the logo and colours for
     // the admin login page
     // add_action('login_head', [__CLASS__, 'customLoginLogo']);
   }
 
   public static function styleScriptIncludes() {
-    wp_enqueue_script(['jquery', 'underscore']);
-    wp_register_style(
-      'font-awesome-lib',
-      '//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css',
-      '',
-      '4.7.0'
+    wp_register_script(
+      'fontawesome-svg-js',
+      '//use.fontawesome.com/releases/v5.0.2/js/all.js',
+      [],
+      '5.0.2',
+      true
     );
-    wp_enqueue_style('font-awesome-lib');
+    wp_enqueue_script(['jquery', 'underscore', 'fontawesome-svg-js']);
     wp_localize_script(
       'theme_js',
       'wpAjax',
       ['ajaxurl' => admin_url('admin-ajax.php')]
     );
+  }
+
+  public function deferParsingOfJS($tag) {
+    $scripts_to_exclude = ['jquery', 'underscore'];
+
+    foreach($scripts_to_exclude as $exclude_script) {
+      if(strpos($tag, $exclude_script) !== false) return $tag;
+    }
+
+    return str_replace(' src', ' defer src', $tag);
   }
 
   public static function themeSupport() {
@@ -82,30 +95,6 @@ class WPTheme extends WPBrunch {
     </style>
 
     <?php
-  }
-
-  public static function autoloadClasses($name) {
-    $class_name = self::formatClassFilename($name);
-    $class_path = get_template_directory() . '/includes/class.'
-      . $class_name . '.php';
-
-    if(file_exists($class_path)) require_once $class_path;
-  }
-
-  public static function autoloadLibClasses($name) {
-    $lib_class_name = THEME_FOLDER . '/includes/class.'
-      . strtolower($name) . '.php';
-
-    if(file_exists($lib_class_name)) require_once($lib_class_name);
-  }
-
-  private static function formatClassFilename($filename) {
-    return strtolower(
-      implode(
-        '-',
-        preg_split('/(?=[A-Z])/', $filename, -1, PREG_SPLIT_NO_EMPTY)
-      )
-    );
   }
 }
 
